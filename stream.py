@@ -34,14 +34,25 @@ login_html = """
         border-radius: 15px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
-    .login-header{
-        text-align: center;
-        margin: 20px 0 40px 0;
+    .toggle-buttons{
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 30px;
     }
-    .login-header header{
-        color: #2c3e50; /* Darker blue for contrast */
-        font-size: 30px;
-        font-weight: 600;
+    .toggle-btn{
+        padding: 10px 30px;
+        cursor: pointer;
+        border: none;
+        border-radius: 30px;
+        background: #66b3ff;
+        color: white;
+        font-size: 16px;
+    }
+    .toggle-btn.active{
+        background: #4da3e6;
+    }
+    .hidden{
+        display: none;
     }
     .input-box .input-field{
         width: 100%;
@@ -56,37 +67,6 @@ login_html = """
         outline: none;
         transition: .3s;
     }
-    ::placeholder{
-        font-weight: 500;
-        color: #555;
-    }
-    .input-field:focus{
-        width: 105%;
-        border-color: #66b3ff;
-    }
-    .forgot{
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 40px;
-    }
-    section{
-        display: flex;
-        align-items: center;
-        font-size: 14px;
-        color: #555;
-    }
-    #check{
-        margin-right: 10px;
-    }
-    a{
-        text-decoration: none;
-    }
-    a:hover{
-        text-decoration: underline;
-    }
-    section a{
-        color: #2c3e50;
-    }
     .input-submit{
         position: relative;
     }
@@ -99,57 +79,67 @@ login_html = """
         cursor: pointer;
         transition: .3s;
     }
-    .input-submit label{
-        position: absolute;
-        top: 45%;
-        left: 50%;
-        color: #fff;
-        -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        cursor: pointer;
-    }
-    .submit-btn:hover{
-        background: #4da3e6;
-        transform: scale(1.05,1);
-    }
-    .sign-up-link{
-        text-align: center;
-        font-size: 15px;
-        margin-top: 20px;
-    }
-    .sign-up-link a{
-        color: #2c3e50;
-        font-weight: 600;
-    }
     </style>
     <title>Login | Ludiflex</title>
 </head>
 <body>
     <div class="login-box">
-        <div class="login-header">
-            <header>Sign Up</header>
+        <div class="toggle-buttons">
+            <button class="toggle-btn active" onclick="showLogin()">Sign In</button>
+            <button class="toggle-btn" onclick="showSignUp()">Sign Up</button>
         </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="Full Name" autocomplete="off" required>
+        
+        <div id="signin" class="">
+            <div class="login-header">
+                <header>Sign In</header>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Username" required>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" required>
+            </div>
+            <div class="input-submit">
+                <button class="submit-btn">Sign In</button>
+            </div>
         </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="Username" autocomplete="off" required>
-        </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="GitHub Link" autocomplete="off" required>
-        </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="GitHub Token" autocomplete="off" required>
-        </div>
-        <div class="input-box">
-            <input type="password" class="input-field" placeholder="Password" autocomplete="off" required>
-        </div>
-        <div class="input-submit">
-            <button class="submit-btn" id="submit"></button>
-            <label for="submit">Sign Up</label>
+        
+        <div id="signup" class="hidden">
+            <div class="login-header">
+                <header>Sign Up</header>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Full Name" required>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="Username" required>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="GitHub Link" required>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" placeholder="GitHub Token" required>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" placeholder="Password" required>
+            </div>
+            <div class="input-submit">
+                <button class="submit-btn">Sign Up</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        function showSignUp() {
+            document.getElementById('signin').classList.add('hidden');
+            document.getElementById('signup').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('signup').classList.add('hidden');
+            document.getElementById('signin').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
 """
