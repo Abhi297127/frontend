@@ -1,5 +1,14 @@
 import streamlit as st
 
+# Custom CSS to set Streamlit background to grey
+st.markdown("""
+    <style>
+    .stApp {
+        background-color: #f0f0f0;  /* Light grey background */
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # HTML and CSS for the login page
 login_html = """
 <!DOCTYPE html>
@@ -21,18 +30,22 @@ login_html = """
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background: #cce7ff; /* Soft sky blue background */
+        background: transparent; /* Keep background transparent to show Streamlit grey */
     }
     .login-box{
         display: flex;
         justify-content: center;
         flex-direction: column;
         width: 440px;
-        height: 480px;
+        height: auto;
         padding: 30px;
         background: #f0f8ff; /* Light blue box */
         border-radius: 15px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     .login-header{
         text-align: center;
