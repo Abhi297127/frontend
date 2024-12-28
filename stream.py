@@ -253,8 +253,6 @@ st.markdown(
 			y.style.left='450px';
 			z.style.left='0px';
 		}
-    </script>
-    <script>
         var modal = document.getElementById('login-form');
         window.onclick = function(event) 
         {
