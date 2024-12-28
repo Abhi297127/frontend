@@ -21,7 +21,7 @@ login_html = """
         justify-content: center;
         align-items: center;
         min-height: 100vh;
-        background: #dfdfdf;
+        background: #cce7ff; /* Soft sky blue background */
     }
     .login-box{
         display: flex;
@@ -30,13 +30,16 @@ login_html = """
         width: 440px;
         height: 480px;
         padding: 30px;
+        background: #f0f8ff; /* Light blue box */
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
     .login-header{
         text-align: center;
         margin: 20px 0 40px 0;
     }
     .login-header header{
-        color: #333;
+        color: #2c3e50; /* Darker blue for contrast */
         font-size: 30px;
         font-weight: 600;
     }
@@ -47,17 +50,19 @@ login_html = """
         padding: 0 25px;
         margin-bottom: 15px;
         border-radius: 30px;
-        border: none;
+        border: 1px solid #b0d4f1;
+        background: #e6f2ff; /* Lighter input background */
         box-shadow: 0px 5px 10px 1px rgba(0,0,0, 0.05);
         outline: none;
         transition: .3s;
     }
     ::placeholder{
         font-weight: 500;
-        color: #222;
+        color: #555;
     }
     .input-field:focus{
         width: 105%;
+        border-color: #66b3ff;
     }
     .forgot{
         display: flex;
@@ -80,7 +85,7 @@ login_html = """
         text-decoration: underline;
     }
     section a{
-        color: #555;
+        color: #2c3e50;
     }
     .input-submit{
         position: relative;
@@ -88,7 +93,7 @@ login_html = """
     .submit-btn{
         width: 100%;
         height: 60px;
-        background: #222;
+        background: #66b3ff; /* Button in soft blue */
         border: none;
         border-radius: 30px;
         cursor: pointer;
@@ -105,7 +110,7 @@ login_html = """
         cursor: pointer;
     }
     .submit-btn:hover{
-        background: #000;
+        background: #4da3e6;
         transform: scale(1.05,1);
     }
     .sign-up-link{
@@ -114,7 +119,7 @@ login_html = """
         margin-top: 20px;
     }
     .sign-up-link a{
-        color: #000;
+        color: #2c3e50;
         font-weight: 600;
     }
     </style>
@@ -154,5 +159,3 @@ login_html = """
 
 # Display HTML content in Streamlit app
 st.markdown(login_html, unsafe_allow_html=True)
-
-# You can add more logic here if you need to collect user inputs, etc.
