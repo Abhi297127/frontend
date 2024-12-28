@@ -85,6 +85,3 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
-# Backend logic
-st.write("Backend handling can be implemented in Python to process login credentials.")
