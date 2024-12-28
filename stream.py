@@ -1,58 +1,158 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
-# Custom HTML and JavaScript for Login and Register
-html_code = """
-<div class="form-box">
-    <div class="login-container" id="login">
-        <div class="top">
-            <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+# HTML and CSS for the login page
+login_html = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: #dfdfdf;
+    }
+    .login-box{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 440px;
+        height: 480px;
+        padding: 30px;
+    }
+    .login-header{
+        text-align: center;
+        margin: 20px 0 40px 0;
+    }
+    .login-header header{
+        color: #333;
+        font-size: 30px;
+        font-weight: 600;
+    }
+    .input-box .input-field{
+        width: 100%;
+        height: 60px;
+        font-size: 17px;
+        padding: 0 25px;
+        margin-bottom: 15px;
+        border-radius: 30px;
+        border: none;
+        box-shadow: 0px 5px 10px 1px rgba(0,0,0, 0.05);
+        outline: none;
+        transition: .3s;
+    }
+    ::placeholder{
+        font-weight: 500;
+        color: #222;
+    }
+    .input-field:focus{
+        width: 105%;
+    }
+    .forgot{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+    section{
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #555;
+    }
+    #check{
+        margin-right: 10px;
+    }
+    a{
+        text-decoration: none;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+    section a{
+        color: #555;
+    }
+    .input-submit{
+        position: relative;
+    }
+    .submit-btn{
+        width: 100%;
+        height: 60px;
+        background: #222;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: .3s;
+    }
+    .input-submit label{
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        color: #fff;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+    .submit-btn:hover{
+        background: #000;
+        transform: scale(1.05,1);
+    }
+    .sign-up-link{
+        text-align: center;
+        font-size: 15px;
+        margin-top: 20px;
+    }
+    .sign-up-link a{
+        color: #000;
+        font-weight: 600;
+    }
+    </style>
+    <title>Login | Ludiflex</title>
+</head>
+<body>
+    <div class="login-box">
+        <div class="login-header">
             <header>Login</header>
         </div>
         <div class="input-box">
-            <input type="text" class="input-field" placeholder="Username or Email">
+            <input type="text" class="input-field" placeholder="Email" autocomplete="off" required>
         </div>
         <div class="input-box">
-            <input type="password" class="input-field" placeholder="Password">
+            <input type="password" class="input-field" placeholder="Password" autocomplete="off" required>
         </div>
-        <div class="input-box">
-            <input type="submit" class="submit" value="Sign In">
+        <div class="forgot">
+            <section>
+                <input type="checkbox" id="check">
+                <label for="check">Remember me</label>
+            </section>
+            <section>
+                <a href="#">Forgot password</a>
+            </section>
+        </div>
+        <div class="input-submit">
+            <button class="submit-btn" id="submit"></button>
+            <label for="submit">Sign In</label>
+        </div>
+        <div class="sign-up-link">
+            <p>Don't have an account? <a href="#">Sign Up</a></p>
         </div>
     </div>
-    <div class="register-container" id="register" style="display: none;">
-        <div class="top">
-            <span>Have an account? <a href="#" onclick="login()">Login</a></span>
-            <header>Sign Up</header>
-        </div>
-        <div class="input-box">
-            <input type="text" class="input-field" placeholder="Email">
-        </div>
-        <div class="input-box">
-            <input type="password" class="input-field" placeholder="Password">
-        </div>
-        <div class="input-box">
-            <input type="submit" class="submit" value="Register">
-        </div>
-    </div>
-</div>
-<script>
-function login() {
-    document.getElementById("login").style.display = "block";
-    document.getElementById("register").style.display = "none";
-}
-function register() {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("register").style.display = "block";
-}
-</script>
-<style>
-    .form-box { max-width: 400px; margin: auto; font-family: Arial, sans-serif; }
-    .input-box { margin: 15px 0; }
-    .input-field { width: 100%; padding: 10px; margin: 5px 0; }
-    .submit { background: #4CAF50; color: white; border: none; padding: 10px; cursor: pointer; width: 100%; }
-    .submit:hover { background: #45a049; }
-</style>
+</body>
+</html>
 """
 
-# Render the HTML
-components.html(html_code, height=600)
+# Display HTML content in Streamlit app
+st.markdown(login_html, unsafe_allow_html=True)
+
+# You can add more logic here if you need to collect user inputs, etc.
