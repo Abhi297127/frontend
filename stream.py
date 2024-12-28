@@ -5,6 +5,10 @@ st.markdown("""
     <style>
     .stApp {
         background-color: #f0f0f0;  /* Light grey background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -42,10 +46,6 @@ login_html = """
         background: #f0f8ff; /* Light blue box */
         border-radius: 15px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
     }
     .login-header{
         text-align: center;
