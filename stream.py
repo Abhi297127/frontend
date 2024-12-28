@@ -28,7 +28,7 @@ login_html = """
         justify-content: center;
         flex-direction: column;
         width: 440px;
-        height: 480px;
+        height: auto;
         padding: 30px;
         background: #f0f8ff; /* Light blue box */
         border-radius: 15px;
@@ -128,29 +128,26 @@ login_html = """
 <body>
     <div class="login-box">
         <div class="login-header">
-            <header>Login</header>
+            <header>Sign Up</header>
         </div>
         <div class="input-box">
-            <input type="text" class="input-field" placeholder="Email" autocomplete="off" required>
+            <input type="text" class="input-field" placeholder="Full Name" autocomplete="off" required>
+        </div>
+        <div class="input-box">
+            <input type="text" class="input-field" placeholder="Username" autocomplete="off" required>
+        </div>
+        <div class="input-box">
+            <input type="text" class="input-field" placeholder="GitHub Link" autocomplete="off" required>
+        </div>
+        <div class="input-box">
+            <input type="text" class="input-field" placeholder="GitHub Token" autocomplete="off" required>
         </div>
         <div class="input-box">
             <input type="password" class="input-field" placeholder="Password" autocomplete="off" required>
         </div>
-        <div class="forgot">
-            <section>
-                <input type="checkbox" id="check">
-                <label for="check">Remember me</label>
-            </section>
-            <section>
-                <a href="#">Forgot password</a>
-            </section>
-        </div>
         <div class="input-submit">
             <button class="submit-btn" id="submit"></button>
-            <label for="submit">Sign In</label>
-        </div>
-        <div class="sign-up-link">
-            <p>Don't have an account? <a href="#">Sign Up</a></p>
+            <label for="submit">Sign Up</label>
         </div>
     </div>
 </body>
