@@ -424,7 +424,7 @@ def login_signup_form():
                             ex ratione. Aliquid!
                         </p>
                         <button class="btn transparent" id="sign-up-btn">
-                            Sign up
+                            Register
                         </button>
                     </div>
                     <img src="/api/placeholder/400/320" class="image" alt="" />
