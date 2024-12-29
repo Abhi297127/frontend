@@ -2,7 +2,33 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 def login_signup_form():
-    # HTML content with embedded CSS and JavaScript
+    st.markdown("""
+        <style>
+            .stApp {
+                padding: 0;
+                margin: 0;
+            }
+            #MainMenu {visibility: hidden;}
+            header {visibility: hidden;}
+            footer {visibility: hidden;}
+            iframe {
+                width: 100vw;
+                height: 100vh;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+            .block-container {
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+            }
+            body {
+                overflow: hidden;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
     html_content = """
     <!DOCTYPE html>
     <html lang="en">
@@ -12,11 +38,17 @@ def login_signup_form():
         <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
-            
+
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
+            }
+
+            body, html {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
             }
 
             body, input {
@@ -26,8 +58,8 @@ def login_signup_form():
             .container {
                 position: relative;
                 width: 100%;
+                height: 100vh;
                 background-color: #fff;
-                min-height: 100vh;
                 overflow: hidden;
             }
 
@@ -244,7 +276,6 @@ def login_signup_form():
                 transform: translateX(800px);
             }
 
-            /* ANIMATION */
             .container.sign-up-mode:before {
                 transform: translate(100%, -50%);
                 right: 52%;
@@ -283,42 +314,69 @@ def login_signup_form():
             }
 
             @media (max-width: 870px) {
-                /* Your existing media query styles */
+                .container {
+                    min-height: 100vh;
+                    height: 100%;
+                }
+                
+                .signin-signup {
+                    width: 100%;
+                    top: 75%;
+                    transform: translate(-50%, -50%);
+                    transition: 1s 0.8s ease-in-out;
+                    padding: 0 1rem;
+                }
+                
+                .panels-container {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 1fr 2fr 1fr;
+                }
+                
+                .panel {
+                    padding: 1rem;
+                }
+                
+                .container::before {
+                    width: 130%;
+                    height: 130%;
+                    transform: translateX(-50%);
+                    left: 30%;
+                    bottom: 68%;
+                    right: initial;
+                    top: initial;
+                }
+                
+                .image {
+                    width: 200px;
+                    max-width: 100%;
+                }
             }
 
             @media (max-width: 570px) {
-                /* Your existing media query styles */
-            }
-            /* Remove padding and margin from the main container */
-            .stApp {
-                padding: 0;
-                margin: 0;
-            }
-            
-            /* Hide Streamlit header and footer */
-            #MainMenu {visibility: hidden;}
-            header {visibility: hidden;}
-            footer {visibility: hidden;}
-            
-            /* Adjust iframe container */
-            iframe {
-                width: 100vw;
-                height: 100vh;
-                border: none;
-                padding: 0;
-                margin: 0;
-            }
-            
-            /* Remove default Streamlit padding */
-            .block-container {
-                padding: 0;
-                margin: 0;
-                max-width: 100%;
-            }
-            
-            /* Ensure no scrollbars appear */
-            body {
-                overflow: hidden;
+                form {
+                    padding: 0 1rem;
+                }
+                
+                .image {
+                    display: none;
+                }
+                
+                .panel .content {
+                    padding: 0.5rem 1rem;
+                }
+                
+                .container {
+                    padding: 1rem;
+                }
+                
+                .panel h3 {
+                    font-size: 1.2rem;
+                }
+                
+                .panel p {
+                    font-size: 0.9rem;
+                    padding: 0.5rem 0;
+                }
             }
         </style>
     </head>
@@ -433,29 +491,14 @@ def login_signup_form():
     </body>
     </html>
     """
-    
-    # Use streamlit components to render the HTML
-    components.html(html_content, height=800, scrolling=True)
+    components.html(html_content, height=1000, scrolling=False)
 
-# Main Streamlit app
 def main():
-    st.set_page_config(page_title="Sign In & Sign Up Form", layout="wide")
-    
-    # Remove default margins
-    st.markdown("""
-        <style>
-            .reportview-container .main .block-container{
-                padding-top: 0rem;
-                padding-right: 0rem;
-                padding-left: 0rem;
-                padding-bottom: 0rem;
-            }
-            .reportview-container .main {
-                color: black;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-    
+    st.set_page_config(
+        page_title="Sign In & Sign Up Form",
+        layout="wide",
+        initial_sidebar_state="collapsed"
+    )
     login_signup_form()
 
 if __name__ == "__main__":
