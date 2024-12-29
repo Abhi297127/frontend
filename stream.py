@@ -1,49 +1,78 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
 def main():
     # Configure page settings
     st.set_page_config(
         page_title="My Website",
         layout="wide",
-        initial_sidebar_state="expanded"
+        initial_sidebar_state="collapsed"
     )
 
-    # Custom CSS for styling
+    # Custom CSS for top navigation
     st.markdown("""
         <style>
-        .css-1d391kg {
-            padding: 1rem;
-        }
-        .stButton>button {
-            width: 100%;
-            background-color: #f0f2f6;
+        .stButton button {
+            background-color: transparent;
             border: none;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: left;
+            color: #4F8BF9;
+            padding: 10px 15px;
+            cursor: pointer;
         }
-        .stButton>button:hover {
-            background-color: #e0e2e6;
+        .stButton button:hover {
+            color: #1f4068;
+            text-decoration: underline;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 1rem 0;
+            background-color: #f8f9fa;
+            margin-bottom: 2rem;
         }
         </style>
     """, unsafe_allow_html=True)
 
-    # Create sidebar navigation
-    st.sidebar.title("Navigation")
-    
-    # Navigation options
-    nav_option = st.sidebar.radio("",
-        options=["🏠 Home", "📞 Contact Us", "ℹ️ About Us", "🛠️ Services", "🔐 Login"],
-        key="nav"
-    )
+    # Create top navigation using columns
+    with st.container():
+        st.markdown('<div class="nav-container">', unsafe_allow_html=True)
+        col1, col2, col3, col4, col5 = st.columns(5)
+        
+        with col1:
+            home = st.button("🏠 Home")
+        with col2:
+            contact = st.button("📞 Contact Us")
+        with col3:
+            about = st.button("ℹ️ About Us")
+        with col4:
+            services = st.button("🛠️ Services")
+        with col5:
+            login = st.button("🔐 Login")
+        
+        st.markdown('</div>', unsafe_allow_html=True)
 
-    # Content based on navigation selection
-    if nav_option == "🏠 Home":
+    # Handle navigation
+    if 'page' not in st.session_state:
+        st.session_state.page = 'home'
+
+    # Update page state based on button clicks
+    if home:
+        st.session_state.page = 'home'
+    elif contact:
+        st.session_state.page = 'contact'
+    elif about:
+        st.session_state.page = 'about'
+    elif services:
+        st.session_state.page = 'services'
+    elif login:
+        st.session_state.page = 'login'
+
+    # Display content based on page state
+    if st.session_state.page == 'home':
         st.title("Welcome to Our Website")
         st.write("This is the home page of our website. Feel free to explore!")
         
-    elif nav_option == "📞 Contact Us":
+    elif st.session_state.page == 'contact':
         st.title("Contact Us")
         st.write("Get in touch with us!")
         
@@ -57,12 +86,12 @@ def main():
             if submit:
                 st.success("Thanks for reaching out! We'll get back to you soon.")
         
-    elif nav_option == "ℹ️ About Us":
+    elif st.session_state.page == 'about':
         st.title("About Us")
         st.write("Learn more about our company and mission.")
         st.write("We are dedicated to providing excellent service to our customers.")
         
-    elif nav_option == "🛠️ Services":
+    elif st.session_state.page == 'services':
         st.title("Our Services")
         st.write("Explore our range of services:")
         
@@ -77,7 +106,7 @@ def main():
             st.subheader("Service 2")
             st.write("Description of service 2")
             
-    elif nav_option == "🔐 Login":
+    elif st.session_state.page == 'login':
         st.title("Login")
         
         # Login form
