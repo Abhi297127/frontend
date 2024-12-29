@@ -24,7 +24,6 @@ login_html = """
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="style.css" />
     <title>Sign in & Sign up Form</title>
   </head>
   <style>
@@ -525,7 +524,21 @@ form.sign-in-form {
       </div>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+    const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".container");
+
+sign_up_btn.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
+});
+
+sign_in_btn.addEventListener("click", () => {
+  container.classList.remove("sign-up-mode");
+});
+
+    
+    </script>
   </body>
 </html>
 """
