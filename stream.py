@@ -400,6 +400,10 @@ def login_signup_form():
                         <h2 class="title">Register</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Name" />
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-user"></i>
                             <input type="text" placeholder="Username" />
                         </div>
                         <div class="input-field">
