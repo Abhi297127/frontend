@@ -397,7 +397,7 @@ def login_signup_form():
                         <input type="submit" value="Login" class="btn solid" />
                     </form>
                     <form action="#" class="sign-up-form">
-                        <h2 class="title">Sign up</h2>
+                        <h2 class="title">Register</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
                             <input type="text" placeholder="Username" />
@@ -410,7 +410,7 @@ def login_signup_form():
                             <i class="fas fa-lock"></i>
                             <input type="password" placeholder="Password" />
                         </div>
-                        <input type="submit" class="btn" value="Sign up" />
+                        <input type="submit" class="btn" value="Register" />
                     </form>
                 </div>
             </div>
@@ -424,7 +424,7 @@ def login_signup_form():
                             ex ratione. Aliquid!
                         </p>
                         <button class="btn transparent" id="sign-up-btn">
-                            Register
+                            Sign up
                         </button>
                     </div>
                     <img src="/api/placeholder/400/320" class="image" alt="" />
