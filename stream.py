@@ -2,98 +2,95 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 def main():
-    # Set page config
-    st.set_page_config(page_title="Login System", layout="centered")
-    
-    # Custom CSS
+    # Configure page settings
+    st.set_page_config(
+        page_title="My Website",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
+
+    # Custom CSS for styling
     st.markdown("""
         <style>
-        .stButton > button {
-            width: 100%;
-            background-color: #5995fd;
-            color: white;
-            border-radius: 25px;
-            height: 45px;
-            border: none;
-            font-weight: 600;
-        }
-        .stButton > button:hover {
-            background-color: #4d84e2;
-        }
         .css-1d391kg {
-            padding: 2rem 1rem;
+            padding: 1rem;
+        }
+        .stButton>button {
+            width: 100%;
+            background-color: #f0f2f6;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .stButton>button:hover {
+            background-color: #e0e2e6;
         }
         </style>
     """, unsafe_allow_html=True)
 
-    # Create tabs for login and signup
-    tab1, tab2 = st.tabs(["Sign In", "Sign Up"])
+    # Create sidebar navigation
+    st.sidebar.title("Navigation")
     
-    with tab1:
-        st.header("Sign In")
+    # Navigation options
+    nav_option = st.sidebar.radio("",
+        options=["🏠 Home", "📞 Contact Us", "ℹ️ About Us", "🛠️ Services", "🔐 Login"],
+        key="nav"
+    )
+
+    # Content based on navigation selection
+    if nav_option == "🏠 Home":
+        st.title("Welcome to Our Website")
+        st.write("This is the home page of our website. Feel free to explore!")
+        
+    elif nav_option == "📞 Contact Us":
+        st.title("Contact Us")
+        st.write("Get in touch with us!")
+        
+        # Contact form
+        with st.form("contact_form"):
+            name = st.text_input("Name")
+            email = st.text_input("Email")
+            message = st.text_area("Message")
+            submit = st.form_submit_button("Send Message")
+            
+            if submit:
+                st.success("Thanks for reaching out! We'll get back to you soon.")
+        
+    elif nav_option == "ℹ️ About Us":
+        st.title("About Us")
+        st.write("Learn more about our company and mission.")
+        st.write("We are dedicated to providing excellent service to our customers.")
+        
+    elif nav_option == "🛠️ Services":
+        st.title("Our Services")
+        st.write("Explore our range of services:")
+        
+        # Service cards using columns
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.subheader("Service 1")
+            st.write("Description of service 1")
+            
+        with col2:
+            st.subheader("Service 2")
+            st.write("Description of service 2")
+            
+    elif nav_option == "🔐 Login":
+        st.title("Login")
         
         # Login form
-        username = st.text_input("Username", placeholder="Enter your username")
-        password = st.text_input("Password", type="password", placeholder="Enter your password")
-        
-        col1, col2, col3 = st.columns([1,2,1])
-        with col2:
-            login_button = st.button("Login")
-        
-        # Social login options
-        st.markdown("<p style='text-align: center; color: #666;'>Or Sign in with</p>", unsafe_allow_html=True)
-        social_col1, social_col2, social_col3, social_col4 = st.columns(4)
-        
-        with social_col1:
-            st.button("📘 FB")
-        with social_col2:
-            st.button("🐦 Twitter")
-        with social_col3:
-            st.button("🔍 Google")
-        with social_col4:
-            st.button("💼 LinkedIn")
-    
-    with tab2:
-        st.header("Sign Up")
-        
-        # Sign up form
-        new_username = st.text_input("Choose Username", placeholder="Enter a username")
-        email = st.text_input("Email", placeholder="Enter your email")
-        new_password = st.text_input("Choose Password", type="password", placeholder="Enter a password")
-        confirm_password = st.text_input("Confirm Password", type="password", placeholder="Confirm your password")
-        
-        col1, col2, col3 = st.columns([1,2,1])
-        with col2:
-            signup_button = st.button("Sign Up")
-
-        # Social signup options
-        st.markdown("<p style='text-align: center; color: #666;'>Or Sign up with</p>", unsafe_allow_html=True)
-        social_col1, social_col2, social_col3, social_col4 = st.columns(4)
-        
-        with social_col1:
-            st.button("📘 FB ", key="fb_signup")
-        with social_col2:
-            st.button("🐦 Twitter ", key="twitter_signup")
-        with social_col3:
-            st.button("🔍 Google ", key="google_signup")
-        with social_col4:
-            st.button("💼 LinkedIn ", key="linkedin_signup")
-
-    # Add login/signup logic here
-    if login_button:
-        if username and password:  # Add your authentication logic here
-            st.success("Logged in successfully!")
-        else:
-            st.error("Please enter both username and password")
+        with st.form("login_form"):
+            username = st.text_input("Username")
+            password = st.text_input("Password", type="password")
+            login_button = st.form_submit_button("Login")
             
-    if signup_button:
-        if new_username and email and new_password and confirm_password:
-            if new_password == confirm_password:
-                st.success("Account created successfully!")
-            else:
-                st.error("Passwords don't match")
-        else:
-            st.error("Please fill in all fields")
+            if login_button:
+                if username and password:  # Add your authentication logic here
+                    st.success("Successfully logged in!")
+                else:
+                    st.error("Please enter both username and password")
 
 if __name__ == "__main__":
     main()
